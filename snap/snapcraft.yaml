@@ -1,0 +1,30 @@
+name: hub-adapter-sample
+base: core20
+version: '0.1'
+summary: Adapter
+description: |
+  Adapter
+
+grade: devel
+confinement: devmode
+
+parts:
+  adapter:
+    plugin: dump
+    source: .
+    prime:
+      - bin/main.sh
+    stage:
+      - bin/main.sh
+    organize:
+      main.sh: bin/main.sh
+
+apps:
+  hub-adapter-sample:
+    command: bin/main.sh
+
+plugs:
+  sockdir:
+    interface: content
+    content: sockdir
+    target: $SNAP_COMMON
