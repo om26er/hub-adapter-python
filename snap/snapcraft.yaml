@@ -5,23 +5,27 @@ summary: Adapter
 description: |
   Adapter
 
-grade: devel
-confinement: devmode
+grade: stable
+confinement: strict
 
 parts:
-  adapter:
+  launcher:
     plugin: dump
     source: .
     prime:
-      - bin/main.sh
+      - bin/main.py
     stage:
-      - bin/main.sh
+      - bin/main.py
     organize:
-      main.sh: bin/main.sh
+      main.py: bin/main.py
+  adapter:
+    plugin: python
+    python-packages:
+      - autobahn[twisted,serialization]
 
 apps:
   hub-adapter-sample:
-    command: bin/main.sh
+    command: bin/python3 -u $SNAP/bin/main.py
 
 plugs:
   sockdir:
