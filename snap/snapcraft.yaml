@@ -28,3 +28,4 @@ plugs:
     interface: content
     content: sockdir
     target: $SNAP_COMMON
+    default-provider: thinghub:sockdir
